@@ -1,16 +1,16 @@
 <template lang="html">
-    <div v-if="item.name === name" class="clearfix">
-      <div class="chat-content" style="float:right" >
-         <p class="title">{{item.name}}  {{item.time}}</p>
-         <p class="content">{{item.content}}</p>
-      </div>
+  <div v-if="item.name === name" class="clearfix">
+    <div class="chat-content" style="float:right">
+      <p class="title">{{ item.name }}  {{ item.time }}</p>
+      <p class="content">{{ item.content }}</p>
     </div>
-    <div v-else class="clearfix">
-      <div class="chat-content" style="float:left" >
-         <p class="title">{{item.name}}  {{item.time}}</p>
-         <p class="content">{{item.content}}</p>
-      </div>
+  </div>
+  <div v-else class="clearfix">
+    <div class="chat-content" style="float:left">
+      <p class="title">{{ item.name }}  {{ item.time }}</p>
+      <p class="content">{{ item.content }}</p>
     </div>
+  </div>
 </template>
 
 <script>

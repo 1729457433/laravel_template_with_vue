@@ -1,33 +1,32 @@
 <template>
-<div>
-  <table class="dataintable todo-list">
-    <tbody>
-    <tr>
-        <th>标识</th>
-        <th>名称</th>
-        <th>描述</th>
-        <th>时间</th>
-    </tr>
-    <tr v-for="item in list" :key="item.id">
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.desc}}</td>
-        <td>{{item.date}}</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+  <div>
+    <table class="dataintable todo-list">
+      <tbody>
+        <tr>
+          <th>标识</th>
+          <th>名称</th>
+          <th>描述</th>
+          <th>时间</th>
+        </tr>
+        <tr v-for="item in list" :key="item.id">
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.desc }}</td>
+          <td>{{ item.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 </template>
 
 <script>
 export default {
-   name: 'DataTable',
-   props: ['list'],
+  name: 'DataTable',
+  props: ['list']
 
 }
 </script>
-
 
 <style>
   .dataintable{
@@ -55,5 +54,4 @@ export default {
       border: 1px solid #ddd;
   }
 </style>
-
 

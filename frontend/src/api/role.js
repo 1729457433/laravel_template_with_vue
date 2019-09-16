@@ -14,35 +14,35 @@ export function getRoles() {
   })
 }
 
-export function getInfoById (id) {
+export function getInfoById(id) {
   return fetch({
     url: '/api/roles/' + id,
-    method: 'get',
+    method: 'get'
   })
 }
 
-export function updateInfo (id, data) {
+export function updateInfo(id, data) {
   data.permissions = data.permissions.join(',')
   return fetch({
     url: '/api/roles/' + id,
     method: 'PATCH',
-    data,
+    data
   })
 }
 
-export function deleteInfoById (id) {
+export function deleteInfoById(id) {
   return fetch({
     url: '/api/roles/' + id,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
-export function addInfo (data) {
+export function addInfo(data) {
   data.permissions = data.permissions.join(',')
   return fetch({
     url: '/api/roles',
     method: 'post',
-    data,
+    data
   })
 }
 

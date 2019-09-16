@@ -1,34 +1,34 @@
 import fetch from '@/utils/fetch'
 
-export function getSession () {
+export function getSession() {
   return fetch({
     url: '/api/getSession',
-    method: 'get',
+    method: 'get'
   })
 }
 
-export function getTeach () {
+export function getTeach() {
   return fetch({
     url: '/api/getTeach',
-    method: 'get',
+    method: 'get'
   })
 }
 
-export function getTeacher () {
+export function getTeacher() {
   return fetch({
     url: '/api/getTeacher',
-    method: 'get',
+    method: 'get'
   })
 }
 
-export function getDefaultSession () {
+export function getDefaultSession() {
   return fetch({
     url: '/api/getDefaultSession',
-    method: 'get',
+    method: 'get'
   })
 }
 
-export function getClassByGrade (grade = 0, teach_id) {
+export function getClassByGrade(grade = 0, teach_id) {
   return fetch({
     url: '/api/getClassNumByGrade',
     method: 'get',
@@ -39,8 +39,7 @@ export function getClassByGrade (grade = 0, teach_id) {
   })
 }
 
-
-export function getTeacherByTeachingId (teaching_id = 0) {
+export function getTeacherByTeachingId(teaching_id = 0) {
   // 获取指定学科的教师信息
   return fetch({
     url: '/api/getTeacherByTeachingId',
@@ -52,11 +51,11 @@ export function getTeacherByTeachingId (teaching_id = 0) {
 }
 
 export function getSelectClassByGrade(grade = 1, id = 1) {
-    // 获取指定的教师在指定学期的任课班级
-   return fetch({
-     url: '/api/getSelectClass/' + id + '/grade/' + grade,
-     method: 'get',
-   })
+  // 获取指定的教师在指定学期的任课班级
+  return fetch({
+    url: '/api/getSelectClass/' + id + '/grade/' + grade,
+    method: 'get'
+  })
 }
 
 export function getClassByTeachingId(id) {

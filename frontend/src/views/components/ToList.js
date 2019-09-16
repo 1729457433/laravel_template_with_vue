@@ -15,25 +15,25 @@ export default {
   data() {
     return {
       bookLists: this.lists,
-      content: '',
+      content: ''
     }
   },
-  render: function(h){
+  render: function(h) {
     var that = this
     if (this.isShow) {
-      return h('div',[
-         h('ul',that.bookLists.map(item=>{
-          return h('li',item)
+      return h('div', [
+        h('ul', that.bookLists.map(item => {
+          return h('li', item)
         })),
-        h('input',{
+        h('input', {
           domProps: {
             value: that.content
           },
-          on:{
-            input:function(event) {
+          on: {
+            input: function(event) {
               that.content = event.target.value
             },
-            keypress: function(event){
+            keypress: function(event) {
               if (event.keyCode === 13) {
                 that.bookLists.push(that.content)
                 that.content = ''
@@ -43,9 +43,9 @@ export default {
         })
       ])
     } else {
-      return h('ul',that.bookLists.map(item =>{
-          return h('li',item)
-        }))
+      return h('ul', that.bookLists.map(item => {
+        return h('li', item)
+      }))
     }
   }
 }

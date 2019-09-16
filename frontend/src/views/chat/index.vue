@@ -1,42 +1,42 @@
 <template lang="html">
   <div id="chat">
-     <el-row>
-        <el-col :span="16">
-          <div class="chat-box">
-            <div v-for="item in messages" :key="item.timezone">
-              <chat-item :item="item" :name="name"></chat-item>
-            </div>
+    <el-row>
+      <el-col :span="16">
+        <div class="chat-box">
+          <div v-for="item in messages" :key="item.timezone">
+            <chat-item :item="item" :name="name" />
           </div>
-        </el-col>
-        <el-col :span="8" class="">
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>在线用户</span>
-            </div>
-            <div v-for="item in users" :key="item" class="text item">
-              {{item}}
-            </div>
-            <br>
-            <el-form class="chat-msg" :inline="true" :model="formInline" @submit.native.prevent>
-              <el-form-item label="消息">
-                <el-input v-model="formInline.msg" @keyup.enter.native="send"></el-input>
-              </el-form-item>
-              <el-form-item>
-                <el-button type="success" plain @click.native.prevent="send">发送</el-button>
-              </el-form-item>
-            </el-form>
-          </el-card>
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>使用说明</span>
-            </div>
-            <p style="color: #f50;line-height: 1.4" class="tips">
-              本事例使用laravel + laravel-echo-server,利用广播推送功能完成。
-              为了模拟演示聊天室效果，你可以同时使用多个不同的浏览器分别用不同的系统管理员用户来登录，就可以在聊天室相互发送消息了。
-            </p>
-          </el-card>
-        </el-col>
-     </el-row>
+        </div>
+      </el-col>
+      <el-col :span="8" class="">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>在线用户</span>
+          </div>
+          <div v-for="item in users" :key="item" class="text item">
+            {{ item }}
+          </div>
+          <br>
+          <el-form class="chat-msg" :inline="true" :model="formInline" @submit.native.prevent>
+            <el-form-item label="消息">
+              <el-input v-model="formInline.msg" @keyup.enter.native="send" />
+            </el-form-item>
+            <el-form-item>
+              <el-button type="success" plain @click.native.prevent="send">发送</el-button>
+            </el-form-item>
+          </el-form>
+        </el-card>
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>使用说明</span>
+          </div>
+          <p style="color: #f50;line-height: 1.4" class="tips">
+            本事例使用laravel + laravel-echo-server,利用广播推送功能完成。
+            为了模拟演示聊天室效果，你可以同时使用多个不同的浏览器分别用不同的系统管理员用户来登录，就可以在聊天室相互发送消息了。
+          </p>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -54,7 +54,7 @@ import {
 import ChatItem from '@/components/Chat/item'
 
 export default {
-  name: 'chat_index',
+  name: 'ChatIndex',
   components: {
     ChatItem
   },
@@ -68,7 +68,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['name']),
+    ...mapGetters(['name'])
   },
   beforeRouteLeave(to, from, next) {
     window.Echo.leave('chat')
@@ -81,47 +81,47 @@ export default {
         .here((users) => {
           vm.users = users
         }).joining((user) => {
-          vm.users.push(user);
+          vm.users.push(user)
           vm.$notify({
             title: '提示',
             message: `${user}轻轻的加入了聊天室`,
             type: 'success'
-          });
+          })
         }).leaving((user) => {
-          let index = vm.users.findIndex(item => item === user)
+          const index = vm.users.findIndex(item => item === user)
           vm.users.splice(index, 1)
           vm.$notify({
             title: '提示',
             message: `${user}悄悄的离开了聊天室`,
             type: 'default'
-          });
+          })
         }).listen('Chat', (e) => {
-          let msg = e.msg
+          const msg = e.msg
           if (msg.name !== vm.name) {
             vm.messages.push(msg)
           }
         })
     })
   },
-  created(){
-    var _self = this;
-    document.onkeydown = function(e){
-      if(window.event == undefined){
-        var key = e.keyCode;
-      }else{
-        var key = window.event.keyCode;
+  created() {
+    var _self = this
+    document.onkeydown = function(e) {
+      if (window.event == undefined) {
+        var key = e.keyCode
+      } else {
+        var key = window.event.keyCode
       }
-      if(key === 13){
-        _self.send();
+      if (key === 13) {
+        _self.send()
       }
     }
   },
   methods: {
     send() {
-      if (!this.formInline.msg){
+      if (!this.formInline.msg) {
         return false
       }
-      let msg = {
+      const msg = {
         name: this.name,
         timezone: Date.now(),
         time: parseTime(Date.now()),

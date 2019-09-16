@@ -5,7 +5,7 @@
     <div class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
-       <tags-view  />
+        <tags-view />
       </div>
       <app-main />
     </div>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain, TagsView} from './components'
+import { Navbar, Sidebar, AppMain, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 import Echo from 'laravel-echo'
 import { getToken } from '@/utils/auth'
@@ -45,17 +45,17 @@ export default {
         mobile: this.device === 'mobile'
       }
     },
-    name(){
+    name() {
       return this.$store.state.user.name
     }
   },
-    created(){
+  created() {
     // 获取网站域名
-    let hostURL = process.env.VUE_APP_BASE_API;
-    let start = hostURL.indexOf('//')
-    let end = hostURL.lastIndexOf('/')
-    let host = hostURL.substring(start + 2, end)   // 获得域名
-    let token = getToken()
+    const hostURL = process.env.VUE_APP_BASE_API
+    const start = hostURL.indexOf('//')
+    const end = hostURL.lastIndexOf('/')
+    const host = hostURL.substring(start + 2, end) // 获得域名
+    const token = getToken()
 
     window.io = require('socket.io-client')
     window.Echo = new Echo({
@@ -66,15 +66,15 @@ export default {
       },
       broadcaster: 'socket.io',
       host: host + ':6001'
-    });
+    })
 
-    window.Echo.private('leave.'+ this.name)
+    window.Echo.private('leave.' + this.name)
       .listen('UserLogin', (e) => {
-          this.$alert('当前用户在其它地方已经登录，现在即将退出', '登录警告', {
+        this.$alert('当前用户在其它地方已经登录，现在即将退出', '登录警告', {
           confirmButtonText: '确定',
           callback: action => {
             this.$store.dispatch('user/resetToken').then(() => {
-              window.location.reload();
+              window.location.reload()
             })
           }
         })

@@ -34,11 +34,9 @@ import contentmenu from 'v-contextmenu'
 import 'v-contextmenu/dist/index.css'
 Vue.use(contentmenu)
 
-
 // 注册全局指令
 import permission from '@/directive/permission/index.js'
 Vue.use(permission)
-
 
 Vue.config.productionTip = false
 

@@ -1,7 +1,6 @@
 import fetch from '@/utils/fetch'
 
-export function getInfo (searchObj = {}, page = 1 , pageSize = 10) {
-
+export function getInfo(searchObj = {}, page = 1, pageSize = 10) {
   return fetch({
     url: '/api/permissions',
     method: 'get',
@@ -11,18 +10,18 @@ export function getInfo (searchObj = {}, page = 1 , pageSize = 10) {
       name: searchObj.name,
       pid: searchObj.pid,
       type: searchObj.type
-    },
+    }
   })
 }
 
-export function getInfoById (id) {
+export function getInfoById(id) {
   return fetch({
     url: '/api/permissions/' + id,
     method: 'get'
   })
 }
 
-export function updateInfo (id, data) {
+export function updateInfo(id, data) {
   return fetch({
     url: '/api/permissions/' + id,
     method: 'patch',
@@ -30,15 +29,15 @@ export function updateInfo (id, data) {
   })
 }
 
-export function addInfo (data) {
+export function addInfo(data) {
   return fetch({
     url: '/api/permissions',
     method: 'post',
-    data,
+    data
   })
 }
 
-export function deleteInfoById (id) {
+export function deleteInfoById(id) {
   return fetch({
     url: '/api/permissions/' + id,
     method: 'delete'
@@ -50,7 +49,7 @@ export function deleteAll(params) {
     url: '/api/permissions/deleteAll',
     method: 'post',
     data: {
-      ids:params
+      ids: params
     }
   })
 }
@@ -60,7 +59,6 @@ export function getGroup() {
     url: '/api/permissions/getGroup',
     method: 'post'
   })
-
 }
 
 export function getPermission() {
@@ -70,16 +68,16 @@ export function getPermission() {
   })
 }
 
-export function Model (name = null, pid = null, type = null,  route_name = null,  remark = null) {
-  this.name = name;
-  this.pid = pid;
-  this.type = type;
-  this.route_name = route_name;
-  this.remark = remark;
+export function Model(name = null, pid = null, type = null, route_name = null, remark = null) {
+  this.name = name
+  this.pid = pid
+  this.type = type
+  this.route_name = route_name
+  this.remark = remark
 }
 
 export function SearchModel(name = null, pid = null, type = null) {
-  this.name = name;
-  this.pid = pid;
-  this.type = type;
+  this.name = name
+  this.pid = pid
+  this.type = type
 }

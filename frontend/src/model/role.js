@@ -5,6 +5,6 @@ export function Model(name = '', explain = '', remark = '', permissions = []) {
   this.permissions = permissions
 }
 
-export function SearchModel(){
-  
+export function SearchModel() {
+
 }

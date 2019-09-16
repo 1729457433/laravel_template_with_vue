@@ -11,21 +11,21 @@ export default {
       default: true
     }
   },
-  render: function(h){
+  render: function(h) {
     if (this.isShow) {
       return h('div',
-      [
-        h('p',[h('span', '子元素'), h('', '测试')]),  // jsx react.js
-        h('p', this.content)
-      ]
-    )
-  } else {
-    return h('div',
-    [
-      h('p',[h('span', '子元素')])
-    ]
-  )
-  }
+        [
+          h('p', [h('span', '子元素'), h('', '测试')]), // jsx react.js
+          h('p', this.content)
+        ]
+      )
+    } else {
+      return h('div',
+        [
+          h('p', [h('span', '子元素')])
+        ]
+      )
+    }
     // h(元素、元素属性说明、元素的子元素、元素的值)
   }
 }

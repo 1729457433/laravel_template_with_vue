@@ -60,6 +60,7 @@ Route::middleware(['auth:api', 'role'])->group(function(){
 });
 Route::get('refresh', "Auth\LoginController@refresh")->name('users.refresh');
 Route::post('login', 'Auth\LoginController@login')->name('users.login');
+Route::get('login', 'Auth\LoginController@login')->name('login');
 
 
 

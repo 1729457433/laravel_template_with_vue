@@ -1,22 +1,21 @@
-let UPLOAD = {
+const UPLOAD = {
   data() {
     return {
-     isShowUpload: false,
-    };
+      isShowUpload: false
+    }
   },
   methods: {
     upload() {
       this.isShowUpload = true
     },
     closeUpload() {
-     this.isShowUpload = false
-    },
+      this.isShowUpload = false
+    }
   },
   mounted() {
   },
   created() {
-  },
-};
-
+  }
+}
 
 export default UPLOAD

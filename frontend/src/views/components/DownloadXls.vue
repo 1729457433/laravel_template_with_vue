@@ -1,20 +1,20 @@
 <template>
-     <!-- 数据导出对话框 -->
-    <el-dialog title="数据导出" :visible="exportDialogFormVisible"   :close-on-click-modal="false" @close="cancelDownload()">
+  <!-- 数据导出对话框 -->
+  <el-dialog title="数据导出" :visible="exportDialogFormVisible" :close-on-click-modal="false" @close="cancelDownload()">
     <div>
-           <p>请选择导出的数据范围</p>
+      <p>请选择导出的数据范围</p>
     </div>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="exportData(2)">全部</el-button>
-      </div>
-    </el-dialog>
+    <div slot="footer" class="dialog-footer">
+      <el-button type="primary" @click="exportData(2)">全部</el-button>
+    </div>
+  </el-dialog>
 </template>
 
 <script>
-import {Tools} from "@/views/utils/Tools";
+import { Tools } from '@/views/utils/Tools'
 
 export default {
-  name: "DownloadXls",
+  name: 'DownloadXls',
   props: {
     show: Boolean,
     templateFile: String,
@@ -24,53 +24,52 @@ export default {
     search: Object
   },
   data() {
-    return {};
+    return {}
   },
   computed: {
     exportDialogFormVisible() {
-      return this.show;
+      return this.show
     }
   },
   methods: {
     cancelDownload() {
-      this.$emit("close-download")
+      this.$emit('close-download')
     },
     exportData(type) {
       switch (type) {
         case 1:
         import(`./../../api/${this.module}`).then(
-        ({exportCurrentPage}) => {
-          exportCurrentPage(this.pageSize, this.page, this.search)
-            .then(res => {
-              location.href = this.templateFile
-            })
-            .catch(err => {
-              Tools.error(this, err.response.data);
-            });
-        })
-          break;
+          ({ exportCurrentPage }) => {
+            exportCurrentPage(this.pageSize, this.page, this.search)
+              .then(res => {
+                location.href = this.templateFile
+              })
+              .catch(err => {
+                Tools.error(this, err.response.data)
+              })
+          })
+          break
         case 2:
         import(`./../../api/${this.module}`).then(
-        ({exportAll}) => {
-          exportAll(this.search)
-            .then(res => {
-              let templateFile = process.env.VUE_APP_BASE_API + res.info
-              location.href = templateFile;
-            })
-            .catch(err => {
-             Tools.error(this, err.response.data);
-            });
-        })
-          break;
+          ({ exportAll }) => {
+            exportAll(this.search)
+              .then(res => {
+                const templateFile = process.env.VUE_APP_BASE_API + res.info
+                location.href = templateFile
+              })
+              .catch(err => {
+                Tools.error(this, err.response.data)
+              })
+          })
+          break
         default:
-          break;
+          break
       }
     }
 
   }
-};
+}
 </script>
-
 
 <style lang="sass" scoped>
 

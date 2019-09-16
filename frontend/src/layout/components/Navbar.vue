@@ -4,9 +4,8 @@
 
     <breadcrumb class="breadcrumb-container" />
 
-
     <div class="right-menu">
-        <screenfull id="screenfull" class="right-menu-item hover-effect" />
+      <screenfull id="screenfull" class="right-menu-item hover-effect" />
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img :src="avatarUrl +'?imageView2/1/w/80/h/80'" class="user-avatar">
@@ -35,7 +34,7 @@ import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
-import {config} from "@/config/index";
+import { config } from '@/config/index'
 
 export default {
   components: {
@@ -48,8 +47,8 @@ export default {
       'sidebar',
       'avatar'
     ]),
-    avatarUrl(){
-      return config.site + '/' + this.avatar;
+    avatarUrl() {
+      return config.site + '/' + this.avatar
     }
   },
   methods: {

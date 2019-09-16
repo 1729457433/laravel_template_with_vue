@@ -1,20 +1,20 @@
 <template lang="html">
   <div class="">
-      <p>{{content}}</p>
+    <p>{{ content }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'desc-template',
-  data() {
-    return {
-    }
-  },
+  name: 'DescTemplate',
   props: {
     content: {
       type: String,
       default: 'Test!!'
+    }
+  },
+  data() {
+    return {
     }
   }
 }

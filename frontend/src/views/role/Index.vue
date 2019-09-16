@@ -2,33 +2,29 @@
   <div id="role">
     <div id="datagrid">
       <div class="toolbar">
-           <el-button plain icon="el-icon-plus" @click="add()" >添加</el-button>
-           <el-alert
-             title="为了演示方便，前端屏蔽了序号为1、2号角色的内容编辑操作，具体可以查看详细代码"
-             type="warning">
-           </el-alert>
+        <el-button plain icon="el-icon-plus" @click="add()">添加</el-button>
+        <el-alert
+          title="为了演示方便，前端屏蔽了序号为1、2号角色的内容编辑操作，具体可以查看详细代码"
+          type="warning"
+        />
       </div>
-       <!-- 角色列表 -->
+      <!-- 角色列表 -->
       <el-table :data="tableData" border style="width: 100%">
-        <el-table-column prop="id" label="序号" width="70">
-        </el-table-column>
-        <el-table-column prop="name" label="角色" width="180">
-        </el-table-column>
-        <el-table-column prop="explain" label="描述" width="200">
-        </el-table-column>
-        <el-table-column prop="remark" label="备注" width="200">
-        </el-table-column>
+        <el-table-column prop="id" label="序号" width="70" />
+        <el-table-column prop="name" label="角色" width="180" />
+        <el-table-column prop="explain" label="描述" width="200" />
+        <el-table-column prop="remark" label="备注" width="200" />
         <el-table-column label="操作">
-          <template slot-scope="scope" v-if="scope.row.id > 2">
-              <el-tooltip content="设置功能" placement="right-end">
-               <el-button plain icon="el-icon-edit-outline" size="small" @click="setPermission(scope.row)"></el-button>
-             </el-tooltip>
-             <el-tooltip content="编辑" placement="right-end" >
-               <el-button plain icon="el-icon-edit" type="primary" size="small" @click="edit(scope.row)"></el-button>
-             </el-tooltip>
-             <el-tooltip content="删除" placement="right-end" >
-               <el-button plain icon="el-icon-delete" type="danger" size="small" @click="del(scope.row)"></el-button>
-             </el-tooltip>
+          <template v-if="scope.row.id > 2" slot-scope="scope">
+            <el-tooltip content="设置功能" placement="right-end">
+              <el-button plain icon="el-icon-edit-outline" size="small" @click="setPermission(scope.row)" />
+            </el-tooltip>
+            <el-tooltip content="编辑" placement="right-end">
+              <el-button plain icon="el-icon-edit" type="primary" size="small" @click="edit(scope.row)" />
+            </el-tooltip>
+            <el-tooltip content="删除" placement="right-end">
+              <el-button plain icon="el-icon-delete" type="danger" size="small" @click="del(scope.row)" />
+            </el-tooltip>
           </template>
         </el-table-column>
       </el-table>
@@ -37,23 +33,23 @@
       <el-dialog title="修改角色信息" :visible.sync="editDialogFormVisible" @close="cancel()">
         <el-form :model="form" label-position="top" label-width="80px">
           <el-row class="first-row">
-          <el-col :span="12" class="first-column">
-          <el-form-item label="角色">
-            <el-input v-model="form.name" placeholder=''></el-input>
-          </el-form-item>
-          </el-col>
-          <el-col :span="12">
-          <el-form-item label="描述">
-             <el-input v-model="form.explain" placeholder=''></el-input>
-          </el-form-item>
-          </el-col>
+            <el-col :span="12" class="first-column">
+              <el-form-item label="角色">
+                <el-input v-model="form.name" placeholder="" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="描述">
+                <el-input v-model="form.explain" placeholder="" />
+              </el-form-item>
+            </el-col>
           </el-row>
           <el-row class="last-row">
-          <el-col :span="24" class="first-column">
-          <el-form-item label="备注">
-            <el-input type="textarea" v-model="form.remark"></el-input>
-          </el-form-item>
-          </el-col>
+            <el-col :span="24" class="first-column">
+              <el-form-item label="备注">
+                <el-input v-model="form.remark" type="textarea" />
+              </el-form-item>
+            </el-col>
           </el-row>
           </el-row>
         </el-form>
@@ -68,7 +64,7 @@
           <el-checkbox-group v-model="form.permissions" size="mini">
             <template v-for="parent in permissions">
               <el-form-item :label="parent.name">
-                  <el-checkbox border v-for="item in parent.children" :label="item.id" :key="item.id">{{item.name}}</el-checkbox>
+                <el-checkbox v-for="item in parent.children" :key="item.id" border :label="item.id">{{ item.name }}</el-checkbox>
               </el-form-item>
             </template>
           </el-checkbox-group>
@@ -80,50 +76,50 @@
       </el-dialog>
     </div>
   </div>
- </template>
+</template>
 
 <script>
 import {
   getInfoById,
-  updateInfo,
-} from "@/api/role";
-import handle from "@/minix/handle";
-import { getPermission } from "@/api/permission";
+  updateInfo
+} from '@/api/role'
+import handle from '@/minix/handle'
+import { getPermission } from '@/api/permission'
 
 export default {
-  name: 'role_index',
+  name: 'RoleIndex',
   mixins: [handle],
-  data () {
+  data() {
     return {
       module: 'role',
       isPermission: false,
-      permissions:[],
+      permissions: [],
       checkPermissions: []// 选择的节点
-    };
+    }
   },
   methods: {
-    async setPermission(row){
-       let  result = await getPermission()
-       this.permissions = result.data
-       result = await getInfoById(row.id)
-       this.form = result.data
-       this.isPermission = true;
+    async setPermission(row) {
+      let result = await getPermission()
+      this.permissions = result.data
+      result = await getInfoById(row.id)
+      this.form = result.data
+      this.isPermission = true
     },
-    cancelPermission(){
-       this.isPermission = false
+    cancelPermission() {
+      this.isPermission = false
     },
     savePermission() {
       this.isPermission = false
       updateInfo(this.form.id, this.form).then(() => {
-        //成功执行内容
-        this.success( '角色信息更改成功')
+        // 成功执行内容
+        this.success('角色信息更改成功')
       }).catch((err) => {
-         console.log(err);
-          this.error(err.response.info)
-      });
+        console.log(err)
+        this.error(err.response.info)
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -1,14 +1,14 @@
 import fetch from '@/utils/fetch'
 
-export function getInfo (searchObj = {}, page = 1, pageSize = 10) {
+export function getInfo(searchObj = {}, page = 1, pageSize = 10) {
   return fetch({
     url: '/api/users',
     method: 'get',
     params: {
-        page,
-        pageSize,
-        name: searchObj.name,
-        email: searchObj.email
+      page,
+      pageSize,
+      name: searchObj.name,
+      email: searchObj.email
     }
   })
 }
@@ -18,15 +18,15 @@ export function getCurrentPage(current_page) {
     url: '/api/users',
     method: 'get',
     params: {
-      page: current_page,
-    },
+      page: current_page
+    }
   })
 }
 
 export function getInfoById(id) {
   return fetch({
     url: '/api/users/' + id,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -58,7 +58,7 @@ export function updateInfo(id, data) {
     params: {
       name: data.name,
       roles: data.roles,
-      avatar: data.avatar,
+      avatar: data.avatar
     },
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -69,7 +69,7 @@ export function updateInfo(id, data) {
 export function deleteInfoById(id) {
   return fetch({
     url: '/api/users/' + id,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -81,7 +81,7 @@ export function addInfo(data) {
   })
 }
 
-export function uploadFile (data) {
+export function uploadFile(data) {
   return fetch({
     url: '/api/users/upload',
     method: 'post',
@@ -92,7 +92,7 @@ export function uploadFile (data) {
   })
 }
 
-export function exportCurrentPage (pageSize = 10, page = 1, searchObj = {}) {
+export function exportCurrentPage(pageSize = 10, page = 1, searchObj = {}) {
   return fetch({
     url: '/api/users/export',
     method: 'post',
@@ -106,7 +106,7 @@ export function exportCurrentPage (pageSize = 10, page = 1, searchObj = {}) {
 }
 
 // 导出所有内容
-export function exportAll (searchObj = {}) {
+export function exportAll(searchObj = {}) {
   return fetch({
     url: '/api/users/export',
     method: 'get',
@@ -118,7 +118,7 @@ export function exportAll (searchObj = {}) {
 }
 
 // 下载模板
-export function download (searchObj = {}) {
+export function download(searchObj = {}) {
   return fetch({
     url: '/api/users/download',
     method: 'get',
@@ -126,7 +126,7 @@ export function download (searchObj = {}) {
   })
 }
 
-export function modifyUser (data) {
+export function modifyUser(data) {
   return fetch({
     url: '/api/users/modify',
     method: 'post',
@@ -138,18 +138,17 @@ export function modifyUser (data) {
   })
 }
 
-export function deleteAll( params) {
+export function deleteAll(params) {
   return fetch({
-     url: '/api/users/deleteAll',
-     method: 'post',
-     data: {
-       ids: params
-     }
+    url: '/api/users/deleteAll',
+    method: 'post',
+    data: {
+      ids: params
+    }
   })
-
 }
 
-export function Model (name = '', email = '', roles = [], avatar = '', password = '', password_confirmation='') {
+export function Model(name = '', email = '', roles = [], avatar = '', password = '', password_confirmation = '') {
   this.name = name
   this.email = email
   this.roles = roles
@@ -158,7 +157,7 @@ export function Model (name = '', email = '', roles = [], avatar = '', password 
   this.password_confirmation = password_confirmation
 }
 
-export function SearchModel(name = '', email = " ") {
-this.name = name
-this.email = email
+export function SearchModel(name = '', email = ' ') {
+  this.name = name
+  this.email = email
 }

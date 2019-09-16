@@ -13,7 +13,7 @@ export default {
   },
   render: function(h) {
     var that = this
-    return h('div',[
+    return h('div', [
       h('input', {
         domProps: {
           value: that.content
@@ -24,7 +24,7 @@ export default {
           }
         }
       }),
-    h('p', that.content)
+      h('p', that.content)
     ])
   }
 }

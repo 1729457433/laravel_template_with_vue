@@ -1,8 +1,6 @@
 <template>
   <div class="view">
-    <div class="search" v-if="hasSearch">
-
-    </div>
+    <div v-if="hasSearch" class="search" />
     <div class="datalist">
       <div class="toolbar">
         <slot name="toolbar">
@@ -28,11 +26,11 @@
       </div>
       <el-table
         v-bind="$attrs"
-        v-on="$listeners"
         :data="$parent.tableData"
         stripe
         border=""
         style="width: 100%"
+        v-on="$listeners"
       >
         <slot>
           <el-table-column
@@ -41,7 +39,7 @@
             :label="item.label"
             :prop="item.prop"
             :width="item.width"
-          ></el-table-column>
+          />
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-tooltip content="编辑" placement="right-end">
@@ -50,7 +48,7 @@
                   plain
                   icon="el-icon-edit-outline"
                   @click="$parent.edit(scope.row)"
-                ></el-button>
+                />
               </el-tooltip>
               <el-tooltip content="删除" placement="right-end">
                 <el-button
@@ -59,28 +57,28 @@
                   type="danger"
                   size="small"
                   @click="$parent.del(scope.row)"
-                ></el-button>
+                />
               </el-tooltip>
             </template>
           </el-table-column>
         </slot>
       </el-table>
-      <el-row class="footer" v-if="hasFooter">
+      <el-row v-if="hasFooter" class="footer">
         <el-col :span="4">
           <el-button v-if="hasPatchDelete" type="danger" plain>批量删除</el-button>
         </el-col>
         <el-col :span="18" :offset="caclOffset">
           <el-pagination
             v-if="hasPager"
-            @size-change="$parent.sizeChange"
-            @current-change="$parent.pagination"
             :current-page.sync="$parent.current_page"
             :page-sizes="[10, 20, 25, 50]"
             :page-size="$parent.pageSize"
             background=""
             layout="total, sizes,  pager"
             :total="$parent.total"
-          ></el-pagination>
+            @size-change="$parent.sizeChange"
+            @current-change="$parent.pagination"
+          />
         </el-col>
       </el-row>
     </div>
@@ -108,7 +106,7 @@ export default {
     },
     toolbar: {
       type: [Array],
-      default: ["add", "upload", "download"]
+      default: ['add', 'upload', 'download']
     },
     columns: {
       type: [Array],
@@ -119,25 +117,25 @@ export default {
       required: true
     }
   },
-    data () {
+  data() {
     return {
       searchForm: {}
     }
   },
   computed: {
     caclOffset() {
-      return this.hasPatchDelete === false ? 4 : 0;
+      return this.hasPatchDelete === false ? 4 : 0
     }
   },
-     created() {
-      // Vue.set(this.searchForm, 'order_number', '')
-      // Vue.set(this.searchForm, 'merchant_number', '')
-      this.searchForm = this.$parent.searchForm
+  created() {
+    // Vue.set(this.searchForm, 'order_number', '')
+    // Vue.set(this.searchForm, 'merchant_number', '')
+    this.searchForm = this.$parent.searchForm
   },
   methods: {
-    test(){
-      console.log(this.searchForm);
-      console.log(this.$parent.searchForm);
+    test() {
+      console.log(this.searchForm)
+      console.log(this.$parent.searchForm)
     }
   }
 }

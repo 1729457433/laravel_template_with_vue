@@ -87,6 +87,12 @@ export default {
       redirect: undefined
     }
   },
+  computed: {
+    docAddress() {
+      const hostURL = process.env.VUE_APP_BASE_API
+      return hostURL + 'showdoc/web/#/1'
+    }
+  },
   watch: {
     $route: {
       handler: function(route) {
@@ -114,8 +120,8 @@ export default {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch((error) => {
-            let result = error.response.data
-            this.$message.error(result.info);
+            const result = error.response.data
+            this.$message.error(result.info)
             this.loading = false
             this.loginForm = {
               username: '',
@@ -127,12 +133,6 @@ export default {
           return false
         }
       })
-    }
-  },
-  computed: {
-    docAddress(){
-      let hostURL = process.env.VUE_APP_BASE_API;
-      return hostURL + 'showdoc/web/#/1'
     }
   }
 }

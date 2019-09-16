@@ -12,10 +12,10 @@ export default {
     }
   },
   render: function(h) {
-    return h('ul',{
-        style: {
-          color: '#f00'
-        }
+    return h('ul', {
+      style: {
+        color: '#f00'
+      }
     }, this.lists.map(item => {
       return h('li', item)
     }))

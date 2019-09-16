@@ -1,8 +1,8 @@
-let DOWNLOAD = {
+const DOWNLOAD = {
   data() {
     return {
-     isShowDownload: false,
-    };
+      isShowDownload: false
+    }
   },
   methods: {
     download() {
@@ -10,13 +10,12 @@ let DOWNLOAD = {
     },
     closeDownload() {
       this.isShowDownload = false
-    },
+    }
   },
   mounted() {
   },
   created() {
-  },
-};
-
+  }
+}
 
 export default DOWNLOAD
