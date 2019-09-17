@@ -51,34 +51,34 @@ export default {
   },
   created() {
     // 获取网站域名
-    const hostURL = process.env.VUE_APP_BASE_API
-    const start = hostURL.indexOf('//')
-    const end = hostURL.lastIndexOf('/')
-    const host = hostURL.substring(start + 2, end) // 获得域名
-    const token = getToken()
+    // const hostURL = process.env.VUE_APP_BASE_API
+    // const start = hostURL.indexOf('//')
+    // const end = hostURL.lastIndexOf('/')
+    // const host = hostURL.substring(start + 2, end) // 获得域名
+    // const token = getToken()
 
-    window.io = require('socket.io-client')
-    window.Echo = new Echo({
-      auth: {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      },
-      broadcaster: 'socket.io',
-      host: host + ':6001'
-    })
-
-    window.Echo.private('leave.' + this.name)
-      .listen('UserLogin', (e) => {
-        this.$alert('当前用户在其它地方已经登录，现在即将退出', '登录警告', {
-          confirmButtonText: '确定',
-          callback: action => {
-            this.$store.dispatch('user/resetToken').then(() => {
-              window.location.reload()
-            })
-          }
-        })
-      })
+    // window.io = require('socket.io-client')
+    // window.Echo = new Echo({
+    //   auth: {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`
+    //     }
+    //   },
+    //   broadcaster: 'socket.io',
+    //   host: host + ':6001'
+    // })
+    //
+    // window.Echo.private('leave.' + this.name)
+    //   .listen('UserLogin', (e) => {
+    //     this.$alert('当前用户在其它地方已经登录，现在即将退出', '登录警告', {
+    //       confirmButtonText: '确定',
+    //       callback: action => {
+    //         this.$store.dispatch('user/resetToken').then(() => {
+    //           window.location.reload()
+    //         })
+    //       }
+    //     })
+    //   })
   },
   methods: {
     handleClickOutside() {
