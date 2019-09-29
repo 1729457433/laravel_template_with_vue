@@ -18,8 +18,8 @@ Route::group(['namespace' => 'Xiqu' ],function () {
     Route::get('/Xiqu/list', 'XiquController@list');
 });
 
-Route::group(['namespace' => 'Move' ],function () {
-    Route::get('/Move/list', 'MoveController@list');
+Route::group(['namespace' => 'Video' ],function () {
+    Route::get('/Video/list', 'VideoController@list');
 });
 
 Route::middleware(['auth:api'])->get('/user',"UserController@info")->name('users.info');

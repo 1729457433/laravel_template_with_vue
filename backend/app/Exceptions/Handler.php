@@ -48,6 +48,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+//        if(
+//            ($exception instanceof ParamsErr)
+//        ) {
+//            return response()->json($exception->response,$exception->httpCode,$exception->headers);
+//        }
+        if($request->route()->getPrefix()=='api'){
+            return response()->json(['code'=>500, 'msg'=>$exception->getMessage()],500);
+        }
         return parent::render($request, $exception);
     }
 }
