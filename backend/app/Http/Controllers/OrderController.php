@@ -22,10 +22,10 @@ class OrderController extends Controller
     protected  $resource = 'App\Http\Resources\Order'; // 显示个体资源
     protected  $resourceCollection = 'App\Http\Resources\OrderCollection'; // 显示资源集合
     protected $map = [
-        "订单编号"=> "order_number",
+        "订单编号" => "order_number",
         "商户编号" => "merchant_number",
-         "商户名称" => "merchant_name",
-         "订单状态" => "order_status",
+        "商户名称" => "merchant_name",
+        "订单状态" => "order_status",
         "订单时间" => "order_time",
         "订单备注" => "order_remark"
     ];   // 导入导出数据的时候  数据表字段与说明的映射表

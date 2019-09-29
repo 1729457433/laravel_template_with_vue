@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::group(['namespace' => 'Xiqu' ],function () {
+    Route::get('/Xiqu/list', 'XiquController@list');
+});
+
+Route::group(['namespace' => 'Move' ],function () {
+    Route::get('/Move/list', 'MoveController@list');
+});
+
 Route::middleware(['auth:api'])->get('/user',"UserController@info")->name('users.info');
 Route::get('test', 'OrderController@index')->name('soft.test');
 Route::middleware(['auth:api', 'role'])->group(function(){
